@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
-  const Input({super.key, required this.hintText, this.validator});
+  const Input({
+    super.key,
+    required this.hintText,
+    this.validator,
+    required this.onChange,
+  });
 
   final String hintText;
   final String? Function(String)? validator;
+  final void Function(String?) onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +32,9 @@ class Input extends StatelessWidget {
           ),
         ),
       ),
+      onSaved: (newValue) {
+        onChange(newValue);
+      },
     );
   }
 }
